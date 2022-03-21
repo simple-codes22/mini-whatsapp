@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Authentication
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        {% if process == 'register' %}
+            <input type="text" name="username" placeholder="Username" />
+            <input type="text" name="first-name" placeholder="First Name" />
+            <input type="text" name="last-name" placeholder="Last Name" />
+            <input type="email" name="e-mail" placeholder="E-Mail" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="button" value="Register" />
+        
+        {% else %}
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="button" value="Login" />
+        {% endif %}
+    </form>
+{% endblock %}

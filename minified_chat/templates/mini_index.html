@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+{% endblock %}
+
+{% block title %}
+HomePage
+{% endblock %}
+
+{% block body %}
+    <section class="main-intro">
+        <div>Minified Chat App</div>
+        {% if request.user.is_authenticated %}
+        <div>
+            <a href="">Join Group</a>
+            <a href="{% url 'Logout' %}">Logout</a>
+        </div>
+        {% else %}
+            <div>
+                <a href="{% url 'Authentication' 'login' %}">Login</a>
+                <a href="{% url 'Authentication' 'register' %}">Register</a>
+            </div>
+        {% endif%}
+    </section>
+    <section class="main-view">
+        <div class="list">Available groups to join: </div>
+        <div class="groups">
+            {% for group in groups %}
+                <a href="{% url 'GroupPage' group.group_name %}">{{group.group_name}</a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

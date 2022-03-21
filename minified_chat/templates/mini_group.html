@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ group_object_details.group_name }}
+{% endblock %}
+
+{% block body %}
+    <div class="chat-log">
+        {% for message in messages %}
+            {% if message.sender == request.user %}
+                <div class="message-right">{{message.content}}</div>
+            {% else %}
+                <div class="message-left">{{message.content}}</div>
+            {% endif %}
+        {% endfor%}
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+
+</script>
+{% endblock %}
