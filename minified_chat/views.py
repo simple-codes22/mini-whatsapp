@@ -9,7 +9,7 @@ def index(request, *args, **kwargs):
     return render(request, 'mini_index.html', {'groups': groups})
 
 def login_register(request, process, *args, **kwargs):
-    if process not in ('login', 'register', 'chat'):
+    if process not in ('login', 'register', 'chat', 'admin'):
         return redirect('HomePage')
     if request.method == 'POST':
         if process == 'register':
@@ -48,12 +48,11 @@ def login_register(request, process, *args, **kwargs):
             
             except Exception:
                 print('Something went wrong in the login system')
-        
-    return render(request, 'login_register.html', {"process": process})
+        return render(request, 'login_register.html', {"process": process})
 
 @login_required(login_url='/login/')
 def group_page(request, group_name, *args, **kwargs):
-    group_ = Group.objects.get_or_create(group_name=group_name)
+    group_ = Group.objects.get(group_name=group_name)
     message_ = Message.objects.filter(group=group_).order_by('date_time_sent')
     return render(request, 'mini_group.html', {
         "group_object_details": group_,

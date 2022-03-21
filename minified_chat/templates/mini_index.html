@@ -29,7 +29,7 @@ HomePage
         <div class="list">Available groups to join: </div>
         <div class="groups">
             {% for group in groups %}
-                <a href="{% url 'GroupPage' group.group_name %}">{{group.group_name}</a>
+                <a href="{% url 'GroupPage' group.group_name %}">{{group.group_name}}</a>
             {% endfor %}
         </div>
     </section>
